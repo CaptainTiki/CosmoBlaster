@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://2qys6nnqvu7"]
+[gd_scene load_steps=4 format=3 uid="uid://2qys6nnqvu7"]
 
 [ext_resource type="Script" path="res://Player/player.gd" id="1_164x6"]
+[ext_resource type="PackedScene" uid="uid://dkntps3pvbubu" path="res://Player/PlayerShip1.fbx" id="2_w585c"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_5m5lb"]
 size = Vector3(1.0686, 0.149048, 1.99713)
@@ -13,19 +14,6 @@ script = ExtResource("1_164x6")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00622559, 0.00311279, 0.0162048)
 shape = SubResource("BoxShape3D_5m5lb")
 
-[node name="MeshInstance" type="CSGCombiner3D" parent="."]
-
-[node name="CSGBox3D" type="CSGBox3D" parent="MeshInstance"]
-size = Vector3(0.1, 0.1, 2)
-
-[node name="CSGBox3D2" type="CSGBox3D" parent="MeshInstance"]
-transform = Transform3D(0.965926, 0, 0.258819, 0, 1, 0, -0.258819, 0, 0.965926, 0.25, 0, -0.2)
-size = Vector3(0.1, 0.1, 1.64209)
-
-[node name="CSGBox3D3" type="CSGBox3D" parent="MeshInstance"]
-transform = Transform3D(0.965926, 0, -0.258819, 0, 1, 0, 0.258819, 0, 0.965926, -0.25, 0, -0.2)
-size = Vector3(0.1, 0.1, 1.64209)
-
 [node name="SpringArm3D" type="SpringArm3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.34202, 0.939693, 0, -0.939693, 0.34202, 0, 0, 0)
 collision_mask = 16
@@ -36,3 +24,5 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 10)
 
 [node name="BulletSpawn" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.12761)
+
+[node name="PlayerShip1" parent="." instance=ExtResource("2_w585c")]
