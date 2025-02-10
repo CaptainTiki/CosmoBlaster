@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://bpqfqkdfgxyli"]
+
+[ext_resource type="Script" path="res://Projectiles/bullet.gd" id="1_wd1ac"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_hvkby"]
+size = Vector3(0.05, 0.05, 0.05)
+
+[node name="Bullet" type="RigidBody3D"]
+gravity_scale = 0.0
+script = ExtResource("1_wd1ac")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_hvkby")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+size = Vector3(0.05, 0.05, 0.05)
+
+[node name="Timer" type="Timer" parent="."]
