@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=3 uid="uid://cob0h7jqlv0hq"]
+
+[ext_resource type="Script" uid="uid://do5pdmpfufxoe" path="res://Player/PlayerShip/ShipParts/Keels/ship_keel.gd" id="1_og6vq"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_og6vq"]
+
+[node name="ShipKeel" type="Node3D"]
+script = ExtResource("1_og6vq")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.194176, 0, 0, 0, 0.228643, 0, 0, 0, 0.217854, 0, 0, 0)
+mesh = SubResource("BoxMesh_og6vq")
+
+[node name="PrimarySlots" type="Node3D" parent="."]
+
+[node name="SecondarySlots" type="Node3D" parent="."]
+
+[node name="UtilitySlots" type="Node3D" parent="."]
+
+[node name="HullAttachmentNode" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.10878)
+
+[node name="NacelleAttachmentNode" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.10878)

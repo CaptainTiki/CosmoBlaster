@@ -1,0 +1,30 @@
+[gd_scene load_steps=3 format=3 uid="uid://sdfd6dexgdbe"]
+
+[ext_resource type="Script" uid="uid://biiskjjb1c5va" path="res://Player/PlayerShip/ShipParts/Nacelles/ship_nacelle.gd" id="1_ivjyf"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_ivjyf"]
+
+[node name="ShipNacelle" type="Node3D"]
+script = ExtResource("1_ivjyf")
+part_name = "default nacelle"
+total_mass = 1.0
+total_energy_capacity = 1.0
+total_thrust = 1.0
+total_integrity = 1.0
+total_armor = 1.0
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.613486, 0, 0, 0, 0.654992, 0, 0, 0, 1.43154, 0, 0, 0)
+mesh = SubResource("BoxMesh_ivjyf")
+
+[node name="PrimarySlots" type="Node3D" parent="."]
+
+[node name="SecondarySlots" type="Node3D" parent="."]
+
+[node name="UtilitySlots" type="Node3D" parent="."]
+
+[node name="KeelAttachmentNode" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.309638, 0, 0.278205)
+
+[node name="WingAttachmentNode" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.303796, 0, 0.00362006)

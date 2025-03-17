@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://uqw5shderd8f"]
+
+[ext_resource type="Script" uid="uid://b0mhrwxabhmry" path="res://Player/PlayerShip/ShipParts/Wings/ship_wing.gd" id="1_xqms5"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_xqms5"]
+
+[node name="ShipWing" type="Node3D"]
+script = ExtResource("1_xqms5")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1.22697, 0, 0, 0, 0.081874, 0, 0, 0, 1.78943, 0, 0, 0)
+mesh = SubResource("BoxMesh_xqms5")
+
+[node name="PrimarySlots" type="Node3D" parent="."]
+
+[node name="SecondarySlots" type="Node3D" parent="."]
+
+[node name="UtilitySlots" type="Node3D" parent="."]
+
+[node name="NacelleAttachmentNode" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.61325, 0, -0.00965157)

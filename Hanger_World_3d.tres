@@ -1,0 +1,12 @@
+[gd_resource type="World3D" load_steps=3 format=3 uid="uid://cekadwieeq8jb"]
+
+[sub_resource type="Sky" id="Sky_sh2ej"]
+
+[sub_resource type="Environment" id="Environment_qn4jv"]
+background_mode = 2
+sky = SubResource("Sky_sh2ej")
+tonemap_mode = 2
+glow_enabled = true
+
+[resource]
+environment = SubResource("Environment_qn4jv")

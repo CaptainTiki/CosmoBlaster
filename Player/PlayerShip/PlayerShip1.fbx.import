@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://dkntps3pvbubu"
-path="res://.godot/imported/PlayerShip1.fbx-f6b5f1652ddc9dc16897b508e5b9dc7e.scn"
+path="res://.godot/imported/PlayerShip1.fbx-f8f0ad5a10f1eba5f517c09baedafd22.scn"
 
 [deps]
 
-source_file="res://Player/PlayerShip1.fbx"
-dest_files=["res://.godot/imported/PlayerShip1.fbx-f6b5f1652ddc9dc16897b508e5b9dc7e.scn"]
+source_file="res://Player/PlayerShip/PlayerShip1.fbx"
+dest_files=["res://.godot/imported/PlayerShip1.fbx-f8f0ad5a10f1eba5f517c09baedafd22.scn"]
 
 [params]
 
@@ -18,6 +18,7 @@ nodes/root_name=""
 nodes/apply_root_scale=true
 nodes/root_scale=1.0
 nodes/import_as_skeleton_bones=false
+nodes/use_node_type_suffixes=true
 meshes/ensure_tangents=true
 meshes/generate_lods=true
 meshes/create_shadow_meshes=true

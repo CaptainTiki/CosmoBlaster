@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://dio6k1e3q8f8u"]
+
+[ext_resource type="Script" uid="uid://x8orq6n6llc7" path="res://Player/PlayerShip/ShipParts/ship_part.gd" id="1_mw7wx"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_mw7wx"]
+
+[node name="ShipPart" type="Node3D"]
+script = ExtResource("1_mw7wx")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.194176, 0, 0, 0, 0.228643, 0, 0, 0, 0.217854, 0, 0, 0)
+mesh = SubResource("BoxMesh_mw7wx")

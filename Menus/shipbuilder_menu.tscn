@@ -1,0 +1,364 @@
+[gd_scene load_steps=10 format=3 uid="uid://bo7tgd5babt85"]
+
+[ext_resource type="Script" uid="uid://borhfrht04j8y" path="res://Menus/shipbuilder_menu.gd" id="1_cm360"]
+[ext_resource type="Texture2D" uid="uid://bfy40bidmko0o" path="res://Menus/MenuAssets/Background_blue.png" id="2_cm360"]
+[ext_resource type="World3D" uid="uid://cekadwieeq8jb" path="res://Hanger_World_3d.tres" id="2_lb6vt"]
+[ext_resource type="Texture2D" uid="uid://di7f0bn4u42u2" path="res://Menus/MenuAssets/Button_normal.png" id="2_mu7a4"]
+[ext_resource type="Texture2D" uid="uid://ben6oms4slmt5" path="res://Menus/MenuAssets/Button_pressed.png" id="3_cm360"]
+[ext_resource type="PackedScene" uid="uid://dpvw876fxlveo" path="res://Player/PlayerShip/player_ship.tscn" id="3_gjj1i"]
+[ext_resource type="Texture2D" uid="uid://dcqhynmoxqvcg" path="res://Menus/MenuAssets/Button_hover.png" id="4_lb6vt"]
+
+[sub_resource type="Gradient" id="Gradient_dqnje"]
+colors = PackedColorArray(0.12, 0.12, 0.16, 1, 0.185, 0.185, 0.5, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_atdx8"]
+gradient = SubResource("Gradient_dqnje")
+fill_from = Vector2(0.477064, 0)
+fill_to = Vector2(0.481651, 1)
+
+[node name="ShipBuilder_menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+script = ExtResource("1_cm360")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer"]
+layout_mode = 2
+texture = SubResource("GradientTexture2D_atdx8")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="MarginContainer/HBoxContainer/MarginContainer"]
+custom_minimum_size = Vector2(512, 0)
+layout_mode = 2
+stretch = true
+
+[node name="SubViewport" type="SubViewport" parent="MarginContainer/HBoxContainer/MarginContainer/SubViewportContainer"]
+world_3d = ExtResource("2_lb6vt")
+transparent_bg = true
+handle_input_locally = false
+size = Vector2i(512, 632)
+render_target_update_mode = 4
+
+[node name="Camera3D" type="Camera3D" parent="MarginContainer/HBoxContainer/MarginContainer/SubViewportContainer/SubViewport"]
+transform = Transform3D(0.87971, -0.195266, 0.433568, -0.0384059, 0.879639, 0.474088, -0.473956, -0.433712, 0.766328, 5.716, 7.745, 9.869)
+fov = 45.0
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="MarginContainer/HBoxContainer/MarginContainer/SubViewportContainer/SubViewport"]
+transform = Transform3D(1, 0, 0, 0, 0.267238, 0.96363, 0, -0.96363, 0.267238, 0, 0, 0)
+
+[node name="PlayerShip" parent="MarginContainer/HBoxContainer/MarginContainer/SubViewportContainer/SubViewport" instance=ExtResource("3_gjj1i")]
+unique_name_in_owner = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="StatsReadout" type="MarginContainer" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/HBoxContainer/VBoxContainer/StatsReadout"]
+custom_minimum_size = Vector2(256, 256)
+layout_mode = 2
+texture = ExtResource("2_cm360")
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/StatsReadout/TextureRect"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="StatsContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/StatsReadout/TextureRect/MarginContainer"]
+layout_mode = 2
+
+[node name="Mass_Label" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer/StatsReadout/TextureRect/MarginContainer/StatsContainer"]
+layout_mode = 2
+text = "Mass : 0"
+
+[node name="Thrust_Label" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer/StatsReadout/TextureRect/MarginContainer/StatsContainer"]
+layout_mode = 2
+text = "Thrust : 0"
+
+[node name="EnergyCapacity_Label" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer/StatsReadout/TextureRect/MarginContainer/StatsContainer"]
+layout_mode = 2
+text = "Energy : 0"
+
+[node name="Armor_Label" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer/StatsReadout/TextureRect/MarginContainer/StatsContainer"]
+layout_mode = 2
+text = "Armor : 0"
+
+[node name="Integrity_Label" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer/StatsReadout/TextureRect/MarginContainer/StatsContainer"]
+layout_mode = 2
+text = "Integrity : 0"
+
+[node name="SwapPartButtons" type="MarginContainer" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/HBoxContainer/VBoxContainer/SwapPartButtons"]
+custom_minimum_size = Vector2(256, 256)
+layout_mode = 2
+texture = ExtResource("2_cm360")
+
+[node name="PartSelectionContainer" type="GridContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/SwapPartButtons"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+columns = 7
+
+[node name="HullButtonsContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/SwapPartButtons/PartSelectionContainer"]
+layout_mode = 2
+
+[node name="Hull_Next_Bn" type="TextureButton" parent="MarginContainer/HBoxContainer/VBoxContainer/SwapPartButtons/PartSelectionContainer/HullButtonsContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 3
+texture_normal = ExtResource("2_mu7a4")
+texture_pressed = ExtResource("3_cm360")
+texture_hover = ExtResource("4_lb6vt")
+
+[node name="Hull_Select_Label" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer/SwapPartButtons/PartSelectionContainer/HullButtonsContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Hull Name"
+vertical_alignment = 1
+
+[node name="Hull_Prev_Bn" type="TextureButton" parent="MarginContainer/HBoxContainer/VBoxContainer/SwapPartButtons/PartSelectionContainer/HullButtonsContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 3
+texture_normal = ExtResource("2_mu7a4")
+texture_pressed = ExtResource("3_cm360")
+texture_hover = ExtResource("4_lb6vt")
+
+[node name="Separator" type="VSeparator" parent="MarginContainer/HBoxContainer/VBoxContainer/SwapPartButtons/PartSelectionContainer"]
+custom_minimum_size = Vector2(10, 0)
+layout_mode = 2
+
+[node name="HullButtonsContainer2" type="VBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/SwapPartButtons/PartSelectionContainer"]
+layout_mode = 2
+
+[node name="Hull_Next_Bn" type="TextureButton" parent="MarginContainer/HBoxContainer/VBoxContainer/SwapPartButtons/PartSelectionContainer/HullButtonsContainer2"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 3
+texture_normal = ExtResource("2_mu7a4")
+texture_pressed = ExtResource("3_cm360")
+texture_hover = ExtResource("4_lb6vt")
+
+[node name="Hull_Select_Label" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer/SwapPartButtons/PartSelectionContainer/HullButtonsContainer2"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Hull Name"
+vertical_alignment = 1
+
+[node name="Hull_Prev_Bn" type="TextureButton" parent="MarginContainer/HBoxContainer/VBoxContainer/SwapPartButtons/PartSelectionContainer/HullButtonsContainer2"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 3
+texture_normal = ExtResource("2_mu7a4")
+texture_pressed = ExtResource("3_cm360")
+texture_hover = ExtResource("4_lb6vt")
+
+[node name="Separator2" type="VSeparator" parent="MarginContainer/HBoxContainer/VBoxContainer/SwapPartButtons/PartSelectionContainer"]
+custom_minimum_size = Vector2(10, 0)
+layout_mode = 2
+
+[node name="HullButtonsContainer3" type="VBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/SwapPartButtons/PartSelectionContainer"]
+layout_mode = 2
+
+[node name="Hull_Next_Bn" type="TextureButton" parent="MarginContainer/HBoxContainer/VBoxContainer/SwapPartButtons/PartSelectionContainer/HullButtonsContainer3"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 3
+texture_normal = ExtResource("2_mu7a4")
+texture_pressed = ExtResource("3_cm360")
+texture_hover = ExtResource("4_lb6vt")
+
+[node name="Hull_Select_Label" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer/SwapPartButtons/PartSelectionContainer/HullButtonsContainer3"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Hull Name"
+vertical_alignment = 1
+
+[node name="Hull_Prev_Bn" type="TextureButton" parent="MarginContainer/HBoxContainer/VBoxContainer/SwapPartButtons/PartSelectionContainer/HullButtonsContainer3"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 3
+texture_normal = ExtResource("2_mu7a4")
+texture_pressed = ExtResource("3_cm360")
+texture_hover = ExtResource("4_lb6vt")
+
+[node name="Separator3" type="VSeparator" parent="MarginContainer/HBoxContainer/VBoxContainer/SwapPartButtons/PartSelectionContainer"]
+custom_minimum_size = Vector2(10, 0)
+layout_mode = 2
+
+[node name="HullButtonsContainer4" type="VBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/SwapPartButtons/PartSelectionContainer"]
+layout_mode = 2
+
+[node name="Hull_Next_Bn" type="TextureButton" parent="MarginContainer/HBoxContainer/VBoxContainer/SwapPartButtons/PartSelectionContainer/HullButtonsContainer4"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 3
+texture_normal = ExtResource("2_mu7a4")
+texture_pressed = ExtResource("3_cm360")
+texture_hover = ExtResource("4_lb6vt")
+
+[node name="Hull_Select_Label" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer/SwapPartButtons/PartSelectionContainer/HullButtonsContainer4"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Hull Name"
+vertical_alignment = 1
+
+[node name="Hull_Prev_Bn" type="TextureButton" parent="MarginContainer/HBoxContainer/VBoxContainer/SwapPartButtons/PartSelectionContainer/HullButtonsContainer4"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 3
+texture_normal = ExtResource("2_mu7a4")
+texture_pressed = ExtResource("3_cm360")
+texture_hover = ExtResource("4_lb6vt")
+
+[node name="MarginContainer3" type="MarginContainer" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/HBoxContainer/VBoxContainer/MarginContainer3"]
+custom_minimum_size = Vector2(0, 64)
+layout_mode = 2
+texture = ExtResource("2_cm360")
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/MarginContainer3/TextureRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/MarginContainer3/TextureRect/MarginContainer"]
+custom_minimum_size = Vector2(256, 64)
+layout_mode = 2
+
+[node name="Hull_Prev_Bn3" type="TextureButton" parent="MarginContainer/HBoxContainer/VBoxContainer/MarginContainer3/TextureRect/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 3
+texture_normal = ExtResource("2_mu7a4")
+texture_pressed = ExtResource("3_cm360")
+texture_hover = ExtResource("4_lb6vt")
+
+[node name="ApplyLabel" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer/MarginContainer3/TextureRect/MarginContainer/HBoxContainer/Hull_Prev_Bn3"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -22.0
+offset_top = -23.0
+offset_right = 22.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Deploy"
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/MarginContainer3/TextureRect/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(64, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Hull_Prev_Bn2" type="TextureButton" parent="MarginContainer/HBoxContainer/VBoxContainer/MarginContainer3/TextureRect/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 10
+size_flags_vertical = 3
+texture_normal = ExtResource("2_mu7a4")
+texture_pressed = ExtResource("3_cm360")
+texture_hover = ExtResource("4_lb6vt")
+
+[node name="BackLabel" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer/MarginContainer3/TextureRect/MarginContainer/HBoxContainer/Hull_Prev_Bn2"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -57.0
+offset_top = -23.0
+offset_right = 57.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Apply Changes"
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/MarginContainer3/TextureRect/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(64, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Hull_Prev_Bn4" type="TextureButton" parent="MarginContainer/HBoxContainer/VBoxContainer/MarginContainer3/TextureRect/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 10
+size_flags_vertical = 3
+texture_normal = ExtResource("2_mu7a4")
+texture_pressed = ExtResource("3_cm360")
+texture_hover = ExtResource("4_lb6vt")
+
+[node name="BackLabel" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer/MarginContainer3/TextureRect/MarginContainer/HBoxContainer/Hull_Prev_Bn4"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -44.0
+offset_top = -23.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "Back"
+horizontal_alignment = 1
+vertical_alignment = 2

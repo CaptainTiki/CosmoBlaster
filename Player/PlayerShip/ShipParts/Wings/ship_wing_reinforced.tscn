@@ -1,0 +1,26 @@
+[gd_scene load_steps=3 format=3 uid="uid://r238uby7ljn8"]
+
+[ext_resource type="Script" uid="uid://b0mhrwxabhmry" path="res://Player/PlayerShip/ShipParts/Wings/ship_wing.gd" id="1_ibiab"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_ibiab"]
+
+[node name="ShipWing_Reinforced" type="Node3D"]
+script = ExtResource("1_ibiab")
+part_name = "Reinforced Wing"
+total_mass = 5.0
+total_integrity = 10.0
+total_armor = 2.0
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1.84046, 0, 0, 0, 0.183398, 0, 0, 0, 1.96837, -0.09, 0, 0)
+mesh = SubResource("BoxMesh_ibiab")
+skeleton = NodePath("../NacelleAttachmentNode")
+
+[node name="PrimarySlots" type="Node3D" parent="."]
+
+[node name="SecondarySlots" type="Node3D" parent="."]
+
+[node name="UtilitySlots" type="Node3D" parent="."]
+
+[node name="NacelleAttachmentNode" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.01, 0, 0)

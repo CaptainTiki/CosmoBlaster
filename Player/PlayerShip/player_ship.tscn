@@ -1,0 +1,36 @@
+[gd_scene load_steps=6 format=3 uid="uid://dpvw876fxlveo"]
+
+[ext_resource type="Script" uid="uid://n6v7tj3680j0" path="res://Player/PlayerShip/player_ship.gd" id="1_reowd"]
+[ext_resource type="PackedScene" uid="uid://dwrdka6tvd8i1" path="res://Player/PlayerShip/ShipParts/Hulls/ship_hull_standard.tscn" id="2_hxyn7"]
+[ext_resource type="PackedScene" uid="uid://clvtr2v2fg0o3" path="res://Player/PlayerShip/ShipParts/Keels/ship_keel_standard.tscn" id="3_5ogen"]
+[ext_resource type="PackedScene" uid="uid://ccbxcmy6gcoe3" path="res://Player/PlayerShip/ShipParts/Nacelles/ship_nacelle_standard.tscn" id="4_5ylc1"]
+[ext_resource type="PackedScene" uid="uid://bm3odmjixc8fr" path="res://Player/PlayerShip/ShipParts/Wings/ship_wing_standard.tscn" id="5_u2har"]
+
+[node name="PlayerShip" type="Node3D"]
+script = ExtResource("1_reowd")
+
+[node name="Hull" type="Node3D" parent="."]
+
+[node name="ShipHull_Standard" parent="Hull" instance=ExtResource("2_hxyn7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.890722)
+
+[node name="Keel" type="Node3D" parent="."]
+
+[node name="ShipKeel_Standard" parent="Keel" instance=ExtResource("3_5ogen")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.89776)
+
+[node name="Nacelle" type="Node3D" parent="."]
+
+[node name="ShipNacelle_Standard" parent="Nacelle" instance=ExtResource("4_5ylc1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.430762, 0, 0.644132)
+
+[node name="ShipNacelle_Standard2" parent="Nacelle" instance=ExtResource("4_5ylc1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.430413, 0, 0.644132)
+
+[node name="Wing" type="Node3D" parent="."]
+
+[node name="ShipWing" parent="Wing" instance=ExtResource("5_u2har")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.1153, 0, 0.644132)
+
+[node name="ShipWing2" parent="Wing" instance=ExtResource("5_u2har")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.42743, 0, 0.639838)

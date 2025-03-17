@@ -1,0 +1,30 @@
+[gd_scene load_steps=3 format=3 uid="uid://c4ipyn214vr0b"]
+
+[ext_resource type="Script" uid="uid://biiskjjb1c5va" path="res://Player/PlayerShip/ShipParts/Nacelles/ship_nacelle.gd" id="1_qnan1"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_qnan1"]
+
+[node name="ShipNacelle_Reinforced" type="Node3D"]
+script = ExtResource("1_qnan1")
+part_name = "Reinforced Nacelle"
+total_mass = 8.0
+total_energy_capacity = 2.0
+total_thrust = 15.0
+total_integrity = 25.0
+total_armor = 3.0
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.920228, 0, 0, 0, 0.63043, 0, 0, 0, 1.93259, 0, 0, 0)
+mesh = SubResource("BoxMesh_qnan1")
+
+[node name="PrimarySlots" type="Node3D" parent="."]
+
+[node name="SecondarySlots" type="Node3D" parent="."]
+
+[node name="UtilitySlots" type="Node3D" parent="."]
+
+[node name="KeelAttachmentNode" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.455695, 0, 0.10878)
+
+[node name="WingAttachmentNode" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.461536, 0, -0.00222227)

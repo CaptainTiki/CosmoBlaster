@@ -1,0 +1,26 @@
+[gd_scene load_steps=3 format=3 uid="uid://bm3odmjixc8fr"]
+
+[ext_resource type="Script" uid="uid://b0mhrwxabhmry" path="res://Player/PlayerShip/ShipParts/Wings/ship_wing.gd" id="1_x0sxe"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_x0sxe"]
+
+[node name="ShipWing_Standard" type="Node3D"]
+script = ExtResource("1_x0sxe")
+part_name = "Standard Wing"
+total_mass = 2.0
+total_integrity = 5.0
+total_armor = 1.0
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1.17789, 0, 0, 0, 0.110039, 0, 0, 0, 1.18102, -0.15, 0, 0)
+mesh = SubResource("BoxMesh_x0sxe")
+skeleton = NodePath("../NacelleAttachmentNode")
+
+[node name="PrimarySlots" type="Node3D" parent="."]
+
+[node name="SecondarySlots" type="Node3D" parent="."]
+
+[node name="UtilitySlots" type="Node3D" parent="."]
+
+[node name="NacelleAttachmentNode" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.74, 0, 0)

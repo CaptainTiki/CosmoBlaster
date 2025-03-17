@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://ds65mn274dmdd"
-path="res://.godot/imported/player.gltf-b3b231667de7c428295f2d768ca1b1e8.scn"
+uid="uid://b6nym8d3q01tu"
+path="res://.godot/imported/Astroid1.fbx-4206e7a5eb6a32fe8e68c9e8c549e790.scn"
 
 [deps]
 
-source_file="res://Player/player.gltf"
-dest_files=["res://.godot/imported/player.gltf-b3b231667de7c428295f2d768ca1b1e8.scn"]
+source_file="res://Astroid1.fbx"
+dest_files=["res://.godot/imported/Astroid1.fbx-4206e7a5eb6a32fe8e68c9e8c549e790.scn"]
 
 [params]
 
@@ -28,10 +28,11 @@ meshes/force_disable_compression=false
 skins/use_named_skins=true
 animation/import=true
 animation/fps=30
-animation/trimming=false
+animation/trimming=true
 animation/remove_immutable_tracks=true
 animation/import_rest_as_RESET=false
 import_script/path=""
 _subresources={}
-gltf/naming_version=1
-gltf/embedded_image_handling=1
+fbx/importer=0
+fbx/allow_geometry_helper_nodes=false
+fbx/embedded_image_handling=1
