@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://bo7tgd5babt85"]
+[gd_scene load_steps=12 format=3 uid="uid://bo7tgd5babt85"]
 
 [ext_resource type="Script" uid="uid://borhfrht04j8y" path="res://Menus/shipbuilder_menu.gd" id="1_cm360"]
 [ext_resource type="Texture2D" uid="uid://bfy40bidmko0o" path="res://Menus/MenuAssets/Background_blue.png" id="2_cm360"]
@@ -15,6 +15,12 @@ colors = PackedColorArray(0.12, 0.12, 0.16, 1, 0.185, 0.185, 0.5, 1)
 gradient = SubResource("Gradient_dqnje")
 fill_from = Vector2(0.477064, 0)
 fill_to = Vector2(0.481651, 1)
+
+[sub_resource type="SystemFont" id="SystemFont_gjj1i"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_dqnje"]
+font = SubResource("SystemFont_gjj1i")
+font_size = 12
 
 [node name="ShipBuilder_menu" type="Control"]
 layout_mode = 3
@@ -151,9 +157,11 @@ texture_pressed = ExtResource("3_cm360")
 texture_hover = ExtResource("4_lb6vt")
 
 [node name="Hull_Select_Label" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer/SwapPartButtons/PartSelectionContainer/HullButtonsContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
 text = "Hull Name"
+label_settings = SubResource("LabelSettings_dqnje")
 vertical_alignment = 1
 
 [node name="Hull_Prev_Bn" type="TextureButton" parent="MarginContainer/HBoxContainer/VBoxContainer/SwapPartButtons/PartSelectionContainer/HullButtonsContainer"]
@@ -168,10 +176,10 @@ texture_hover = ExtResource("4_lb6vt")
 custom_minimum_size = Vector2(10, 0)
 layout_mode = 2
 
-[node name="HullButtonsContainer2" type="VBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/SwapPartButtons/PartSelectionContainer"]
+[node name="KeelButtonsContainer2" type="VBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/SwapPartButtons/PartSelectionContainer"]
 layout_mode = 2
 
-[node name="Hull_Next_Bn" type="TextureButton" parent="MarginContainer/HBoxContainer/VBoxContainer/SwapPartButtons/PartSelectionContainer/HullButtonsContainer2"]
+[node name="Keel_Next_Bn" type="TextureButton" parent="MarginContainer/HBoxContainer/VBoxContainer/SwapPartButtons/PartSelectionContainer/KeelButtonsContainer2"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 3
@@ -179,13 +187,15 @@ texture_normal = ExtResource("2_mu7a4")
 texture_pressed = ExtResource("3_cm360")
 texture_hover = ExtResource("4_lb6vt")
 
-[node name="Hull_Select_Label" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer/SwapPartButtons/PartSelectionContainer/HullButtonsContainer2"]
+[node name="Keel_Select_Label" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer/SwapPartButtons/PartSelectionContainer/KeelButtonsContainer2"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
 text = "Hull Name"
+label_settings = SubResource("LabelSettings_dqnje")
 vertical_alignment = 1
 
-[node name="Hull_Prev_Bn" type="TextureButton" parent="MarginContainer/HBoxContainer/VBoxContainer/SwapPartButtons/PartSelectionContainer/HullButtonsContainer2"]
+[node name="Keel_Prev_Bn" type="TextureButton" parent="MarginContainer/HBoxContainer/VBoxContainer/SwapPartButtons/PartSelectionContainer/KeelButtonsContainer2"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 3
@@ -197,10 +207,10 @@ texture_hover = ExtResource("4_lb6vt")
 custom_minimum_size = Vector2(10, 0)
 layout_mode = 2
 
-[node name="HullButtonsContainer3" type="VBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/SwapPartButtons/PartSelectionContainer"]
+[node name="NacelleButtonsContainer3" type="VBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/SwapPartButtons/PartSelectionContainer"]
 layout_mode = 2
 
-[node name="Hull_Next_Bn" type="TextureButton" parent="MarginContainer/HBoxContainer/VBoxContainer/SwapPartButtons/PartSelectionContainer/HullButtonsContainer3"]
+[node name="Nacelle_Next_Bn" type="TextureButton" parent="MarginContainer/HBoxContainer/VBoxContainer/SwapPartButtons/PartSelectionContainer/NacelleButtonsContainer3"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 3
@@ -208,13 +218,15 @@ texture_normal = ExtResource("2_mu7a4")
 texture_pressed = ExtResource("3_cm360")
 texture_hover = ExtResource("4_lb6vt")
 
-[node name="Hull_Select_Label" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer/SwapPartButtons/PartSelectionContainer/HullButtonsContainer3"]
+[node name="Nacelle_Select_Label" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer/SwapPartButtons/PartSelectionContainer/NacelleButtonsContainer3"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
 text = "Hull Name"
+label_settings = SubResource("LabelSettings_dqnje")
 vertical_alignment = 1
 
-[node name="Hull_Prev_Bn" type="TextureButton" parent="MarginContainer/HBoxContainer/VBoxContainer/SwapPartButtons/PartSelectionContainer/HullButtonsContainer3"]
+[node name="Nacelle_Prev_Bn" type="TextureButton" parent="MarginContainer/HBoxContainer/VBoxContainer/SwapPartButtons/PartSelectionContainer/NacelleButtonsContainer3"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 3
@@ -226,10 +238,10 @@ texture_hover = ExtResource("4_lb6vt")
 custom_minimum_size = Vector2(10, 0)
 layout_mode = 2
 
-[node name="HullButtonsContainer4" type="VBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/SwapPartButtons/PartSelectionContainer"]
+[node name="WingButtonsContainer4" type="VBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/SwapPartButtons/PartSelectionContainer"]
 layout_mode = 2
 
-[node name="Hull_Next_Bn" type="TextureButton" parent="MarginContainer/HBoxContainer/VBoxContainer/SwapPartButtons/PartSelectionContainer/HullButtonsContainer4"]
+[node name="Wing_Next_Bn" type="TextureButton" parent="MarginContainer/HBoxContainer/VBoxContainer/SwapPartButtons/PartSelectionContainer/WingButtonsContainer4"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 3
@@ -237,13 +249,15 @@ texture_normal = ExtResource("2_mu7a4")
 texture_pressed = ExtResource("3_cm360")
 texture_hover = ExtResource("4_lb6vt")
 
-[node name="Hull_Select_Label" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer/SwapPartButtons/PartSelectionContainer/HullButtonsContainer4"]
+[node name="Wing_Select_Label" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer/SwapPartButtons/PartSelectionContainer/WingButtonsContainer4"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
 text = "Hull Name"
+label_settings = SubResource("LabelSettings_dqnje")
 vertical_alignment = 1
 
-[node name="Hull_Prev_Bn" type="TextureButton" parent="MarginContainer/HBoxContainer/VBoxContainer/SwapPartButtons/PartSelectionContainer/HullButtonsContainer4"]
+[node name="Wing_Prev_Bn" type="TextureButton" parent="MarginContainer/HBoxContainer/VBoxContainer/SwapPartButtons/PartSelectionContainer/WingButtonsContainer4"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 3
@@ -362,3 +376,12 @@ grow_vertical = 0
 text = "Back"
 horizontal_alignment = 1
 vertical_alignment = 2
+
+[connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/SwapPartButtons/PartSelectionContainer/HullButtonsContainer/Hull_Next_Bn" to="." method="_on_hull_next_bn_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/SwapPartButtons/PartSelectionContainer/HullButtonsContainer/Hull_Prev_Bn" to="." method="_on_hull_prev_bn_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/SwapPartButtons/PartSelectionContainer/KeelButtonsContainer2/Keel_Next_Bn" to="." method="_on_keel_next_bn_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/SwapPartButtons/PartSelectionContainer/KeelButtonsContainer2/Keel_Prev_Bn" to="." method="_on_keel_prev_bn_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/SwapPartButtons/PartSelectionContainer/NacelleButtonsContainer3/Nacelle_Next_Bn" to="." method="_on_nacelle_next_bn_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/SwapPartButtons/PartSelectionContainer/NacelleButtonsContainer3/Nacelle_Prev_Bn" to="." method="_on_nacelle_prev_bn_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/SwapPartButtons/PartSelectionContainer/WingButtonsContainer4/Wing_Next_Bn" to="." method="_on_wing_next_bn_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/SwapPartButtons/PartSelectionContainer/WingButtonsContainer4/Wing_Prev_Bn" to="." method="_on_wing_prev_bn_pressed"]

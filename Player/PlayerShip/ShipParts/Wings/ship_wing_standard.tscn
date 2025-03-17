@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://bm3odmjixc8fr"]
 
-[ext_resource type="Script" uid="uid://b0mhrwxabhmry" path="res://Player/PlayerShip/ShipParts/Wings/ship_wing.gd" id="1_x0sxe"]
+[ext_resource type="Script" uid="uid://b0mhrwxabhmry" path="res://Player/PlayerShip/ShipParts/ship_wing.gd" id="1_x0sxe"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_x0sxe"]
 

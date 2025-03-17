@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://b4rp3s34ljx7q"]
 
-[ext_resource type="Script" uid="uid://do5pdmpfufxoe" path="res://Player/PlayerShip/ShipParts/Keels/ship_keel.gd" id="1_1kpa1"]
+[ext_resource type="Script" uid="uid://do5pdmpfufxoe" path="res://Player/PlayerShip/ShipParts/ship_keel.gd" id="1_1kpa1"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_1kpa1"]
 

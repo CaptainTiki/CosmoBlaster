@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://c4ipyn214vr0b"]
 
-[ext_resource type="Script" uid="uid://biiskjjb1c5va" path="res://Player/PlayerShip/ShipParts/Nacelles/ship_nacelle.gd" id="1_qnan1"]
+[ext_resource type="Script" uid="uid://biiskjjb1c5va" path="res://Player/PlayerShip/ShipParts/ship_nacelle.gd" id="1_qnan1"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_qnan1"]
 

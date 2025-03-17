@@ -1,10 +1,10 @@
 [gd_scene load_steps=3 format=3 uid="uid://bjnjk5yygba4d"]
 
-[ext_resource type="Script" uid="uid://civ7b34i60wbg" path="res://Player/PlayerShip/ShipParts/Hulls/ship_hull.gd" id="1_0ubgt"]
+[ext_resource type="Script" uid="uid://civ7b34i60wbg" path="res://Player/PlayerShip/ShipParts/ship_hull.gd" id="1_0ubgt"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_8rl4w"]
 
-[node name="ShipHull_Reinforced" type="Node3D"]
+[node name="Ship_Hull_Reinforced" type="Node3D"]
 script = ExtResource("1_0ubgt")
 part_name = "Reinforced Hull"
 total_mass = 5.0
