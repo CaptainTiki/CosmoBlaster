@@ -29,8 +29,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.430413, 0, 0.644132)
 
 [node name="Wing_Node" type="Node3D" parent="."]
 
-[node name="Ship_Wing" parent="Wing_Node" instance=ExtResource("5_u2har")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.1153, 0, 0.644132)
+[node name="Ship_Wing_Standard" parent="Wing_Node" instance=ExtResource("5_u2har")]
 
-[node name="Shi_Wing2" parent="Wing_Node" instance=ExtResource("5_u2har")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.42743, 0, 0.639838)
+[node name="Ship_Wing_Standard2" parent="Wing_Node" instance=ExtResource("5_u2har")]

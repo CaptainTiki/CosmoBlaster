@@ -79,10 +79,9 @@ func _on_keel_prev_bn_pressed() -> void:
 
 func _on_nacelle_next_bn_pressed() -> void:
 	await get_tree().process_frame
-	var part_name: String = player_ship.get_part_name("nacelle")
-	
+	var part_name: String = player_ship.get_part_name("nacelles")
 	if part_name == "unknown_part":
-		printerr("ERROR: Cannot switch nacelles because current nacelles is invalid.")
+		printerr("ERROR: Cannot switch nacelle because current nacelle is invalid.")
 		return
 	
 	var index: int = AssetManager.get_part_index(part_name, AssetManager.nacelles_list)
@@ -96,12 +95,14 @@ func _on_nacelle_next_bn_pressed() -> void:
 
 func _on_nacelle_prev_bn_pressed() -> void:
 	await get_tree().process_frame
-	var part_name: String = player_ship.get_part_name("nacelle")
+	var part_name: String = player_ship.get_part_name("nacelles")
+	
 	if part_name == "unknown_part":
 		printerr("ERROR: Cannot switch nacelles because current nacelle is invalid.")
 		return
 	
 	var index: int = AssetManager.get_part_index(part_name, AssetManager.nacelles_list)
+	
 	if index == -1:
 		printerr("ERROR: Could not find current nacelle in nacelles_list!")
 		return
@@ -112,13 +113,14 @@ func _on_nacelle_prev_bn_pressed() -> void:
 
 func _on_wing_next_bn_pressed() -> void:
 	await get_tree().process_frame
-	var part_name: String = player_ship.get_part_name("wing")
+	var part_name: String = player_ship.get_part_name("wings")
 	
 	if part_name == "unknown_part":
 		printerr("ERROR: Cannot switch wings because current wing is invalid.")
 		return
-	
+		
 	var index: int = AssetManager.get_part_index(part_name, AssetManager.wings_list)
+		
 	if index == -1:
 		printerr("ERROR: Could not find current wing in wings_list!")
 		return
@@ -129,7 +131,7 @@ func _on_wing_next_bn_pressed() -> void:
 
 func _on_wing_prev_bn_pressed() -> void:
 	await get_tree().process_frame
-	var part_name: String = player_ship.get_part_name("wing")
+	var part_name: String = player_ship.get_part_name("wings")
 	if part_name == "unknown_part":
 		printerr("ERROR: Cannot switch wings because current wing is invalid.")
 		return

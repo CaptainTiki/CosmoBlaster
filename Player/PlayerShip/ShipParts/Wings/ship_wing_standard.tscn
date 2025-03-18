@@ -4,12 +4,14 @@
 
 [sub_resource type="BoxMesh" id="BoxMesh_x0sxe"]
 
-[node name="ShipWing_Standard" type="Node3D"]
+[node name="Ship_Wing_Standard" type="Node3D"]
 script = ExtResource("1_x0sxe")
 part_name = "Standard Wing"
-total_mass = 2.0
-total_integrity = 5.0
-total_armor = 1.0
+mass = 5.0
+energy_capacity = 3.0
+thrust = 4.0
+integrity = 10.0
+armor = 1.0
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(1.17789, 0, 0, 0, 0.110039, 0, 0, 0, 1.18102, -0.15, 0, 0)

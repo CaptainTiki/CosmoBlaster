@@ -7,10 +7,10 @@
 [node name="Ship_Hull_Standard" type="Node3D"]
 script = ExtResource("1_8rl4w")
 part_name = "Standard Hull"
-total_mass = 3.0
-total_energy_capacity = 2.0
-total_integrity = 15.0
-total_armor = 1.0
+mass = 7.0
+thrust = 2.0
+integrity = 10.0
+armor = 1.0
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.359225, 0, 0, 0, 0.514761, 0, 0, 0, 1.78943, 0, 0, 0)

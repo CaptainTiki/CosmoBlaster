@@ -16,8 +16,8 @@ var ship_stats: ShipStats = ShipStats.new()
 var current_parts = {
 	"hull": null,
 	"keel": null,
-	"nacelles": null,
-	"wings": null
+	"nacelles": [],
+	"wings": []
 }
 
 func _ready() -> void:
@@ -25,11 +25,7 @@ func _ready() -> void:
 	set_keel(0)
 	set_nacelle(0)
 	set_wing(0)
-	
-	print(current_parts["hull"])
-	print(current_parts["keel"])
-	print(current_parts["nacelles"])
-	print(current_parts["wings"])
+	pass
 
 func set_hull(index: int):
 	# Safety check: Ensure index is valid
@@ -57,45 +53,39 @@ func set_hull(index: int):
 	# Now safely update current_parts
 	current_parts["hull"] = new_hull
 	
-	# Align KeelAttachmentNode to Vector3.ZERO
-	var keel_attachment = new_hull.get_node_or_null("KeelAttachmentNode")
-	if keel_attachment:
-		var offset = keel_attachment.transform.origin  # Get its local position
-		new_hull.transform.origin -= offset  # Move hull in the opposite direction
+	align_ship_parts()
 	calculate_ship_stats()
 
 func set_keel(index: int):
 	# Safety check: Ensure index is valid
-	if index < 0 or index >= AssetManager.hulls_list.size():
+	if index < 0 or index >= AssetManager.keels_list.size():
 		printerr("ERROR: Index out of bounds!", index)
 		return
+	
 	var new_keel_filename: String = keel_folder + AssetManager.keels_list[index] + ".tscn"
 	var keel_scene = load(new_keel_filename)
 	if keel_scene == null or not keel_scene is PackedScene:
 		printerr("ERROR: Failed to load keel scene at:", new_keel_filename)
 		return  # Stop here if loading fails
-	
-	# Remove old hull
+		
+	# Remove old keel
 	for old_keel in keel_node.get_children():
 		old_keel.queue_free()
 		
-	# Instantiate and add new hull
+	# Instantiate and add new keel
 	var new_keel = keel_scene.instantiate()
 	if new_keel == null:
 		printerr("ERROR: Instantiation failed for", new_keel_filename)
 		return  # Stop here if instantiation fails
 	
-	new_keel.name = AssetManager.keels_list[index]  # Ensure the name is properly set
+	# set the keel name
+	new_keel.name = AssetManager.keels_list[index]
 	keel_node.add_child(new_keel)
 	
 	# Now safely update current_parts
 	current_parts["keel"] = new_keel
 	
-	# Align HullAttachmentNode to Vector3.ZERO
-	var hull_attachment = new_keel.get_node_or_null("HullAttachmentNode")
-	if hull_attachment:
-		var offset = hull_attachment.transform.origin  # Get its local position
-		new_keel.transform.origin -= offset  # Move keel in the opposite direction
+	align_ship_parts()
 	calculate_ship_stats()
 
 func set_nacelle(index: int):
@@ -109,88 +99,167 @@ func set_nacelle(index: int):
 	if nacelle_scene == null or not nacelle_scene is PackedScene:
 		printerr("ERROR: Failed to load nacelle scene at:", new_nacelle_filename)
 		return  # Stop here if loading fails
+	
+	# Remove old nacelles safely and clear references
+	if "nacelles" in current_parts and current_parts["nacelles"].size() > 0:
+		for old_nacelle in current_parts["nacelles"]:
+			if is_instance_valid(old_nacelle) and old_nacelle.is_inside_tree():
+				old_nacelle.queue_free()
+		current_parts["nacelles"].clear()  # Ensure we don't hold references to deleted objects
 		
-	# Remove old nacelle
-	for old_keel in keel_node.get_children():
-		old_keel.queue_free()
-		
-	# Instantiate and add new nacelle
+	# Instantiate and add first nacelle
 	var new_nacelle = nacelle_scene.instantiate()
-	if new_nacelle == null:
-		printerr("ERROR: Instantiation failed for", new_nacelle_filename)
-		return  # Stop here if instantiation fails
-		
 	new_nacelle.name = AssetManager.nacelles_list[index]  # Ensure the name is properly set
-	keel_node.add_child(new_nacelle)
+	nacelle_node.add_child(new_nacelle)
+		
+	#instatiate mirrored nacelle
+	var mirrored_nacelle = nacelle_scene.instantiate()
+	mirrored_nacelle.name = AssetManager.nacelles_list[index] + "_mirrored"
+	nacelle_node.add_child(mirrored_nacelle)
 	
-	# Now safely update current_parts
-	current_parts["nacelle"] = new_nacelle
-	
-	# Align nacelle's keel_attachment to keel's nacelle_attachment
-	var keel = current_parts["keel"]
-	if keel == null:
-		print("ERROR: Keel not set, cannot align nacelle!")
-		return
-		
-	var keel_nacelle_attachment = keel.get_node_or_null("NacelleAttachmentNode")
-	var nacelle_keel_attachment = new_nacelle.get_node_or_null("KeelAttachmentNode")
-		
-	if keel_nacelle_attachment and nacelle_keel_attachment:
-		var keel_target_pos = keel_nacelle_attachment.global_transform.origin
-		var nacelle_attach_pos = nacelle_keel_attachment.global_transform.origin
-		
-		var offset = keel_target_pos - nacelle_attach_pos  # Calculate needed movement
-		new_nacelle.global_transform.origin += offset  # Move nacelle into position
-	else:
-		print("ERROR: Missing attachment nodes on keel or nacelle!")
-		
+	# update current_parts
+	current_parts["nacelles"] = [new_nacelle, mirrored_nacelle]
+
+	align_ship_parts()
 	calculate_ship_stats()
 
 func set_wing(index: int):
 	# Safety check: Ensure index is valid
-	if index < 0 or index >= AssetManager.keels_list.size():
+	if index < 0 or index >= AssetManager.wings_list.size():
 		printerr("ERROR: Index out of bounds!", index)
 		return
 
-	var new_keel_filename: String = keel_folder + AssetManager.keels_list[index] + ".tscn"
-
-	var keel_scene = load(new_keel_filename)
-	if keel_scene == null or not keel_scene is PackedScene:
-		printerr("ERROR: Failed to load keel scene at:", new_keel_filename)
+	var new_wing_filename: String = wing_folder + AssetManager.wings_list[index] + ".tscn"
+	var wing_scene = load(new_wing_filename)
+	if wing_scene == null or not wing_scene is PackedScene:
+		printerr("ERROR: Failed to load wing scene at:", new_wing_filename)
 		return  # Stop here if loading fails
 	
-	# Remove old keel
-	for old_keel in keel_node.get_children():
-		old_keel.queue_free()
+	# Remove old wings safely
+	if "wings" in current_parts and current_parts["wings"].size() > 0:
+		for old_wing in current_parts["wings"]:
+			if is_instance_valid(old_wing) and old_wing.is_inside_tree():
+				old_wing.queue_free()
+		current_parts["wings"].clear()
 
-	# Instantiate and add new keel
-	var new_keel = keel_scene.instantiate()
-	if new_keel == null:
-		printerr("ERROR: Instantiation failed for", new_keel_filename)
-		return  # Stop here if instantiation fails
-
-	new_keel.name = AssetManager.keels_list[index]  # Ensure the name is properly set
-	keel_node.add_child(new_keel)
-
-	# Now safely update current_parts
-	current_parts["keel"] = new_keel
+	# Instantiate and add new wing
+	var new_wing = wing_scene.instantiate()
+	new_wing.name = AssetManager.wings_list[index]  # Ensure the name is properly set
+	wing_node.add_child(new_wing)
 	
-	# Align KeelAttachmentNode to Vector3.ZERO
-	var hull_attachment = new_keel.get_node_or_null("HullAttachmentNode")
-	if hull_attachment:
-		var offset = hull_attachment.transform.origin  # Get its local position
-		new_keel.transform.origin -= offset  # Move keel in the opposite direction
-
+	#instatiate mirrored wing
+	var mirrored_wing = wing_scene.instantiate()
+	mirrored_wing.name = AssetManager.wings_list[index] + "_mirrored"
+	nacelle_node.add_child(mirrored_wing)
+	
+	# Now safely update current_parts
+	current_parts["wings"] = [new_wing, mirrored_wing]
+	
+	align_ship_parts()
 	calculate_ship_stats()
 
+func align_ship_parts() -> void:
+	if not current_parts["hull"] or not current_parts["keel"] or not current_parts["nacelles"] or not current_parts["wings"]:
+		return # don't align if we don't have all the parts assigned yet. 
+	
+	#reset all positions to ZERO before alignment
+	current_parts["hull"].transform.origin = Vector3.ZERO
+	current_parts["keel"].transform.origin = Vector3.ZERO
+	current_parts["nacelles"][0].transform.origin = Vector3.ZERO
+	current_parts["nacelles"][1].transform.origin = Vector3.ZERO
+	current_parts["wings"][0].transform.origin = Vector3.ZERO
+	current_parts["wings"][1].transform.origin = Vector3.ZERO
+	
+# Align Hull - KeelAttachmentNode to Vector3.ZERO
+	var keel_attachment = current_parts["hull"].get_node_or_null("KeelAttachmentNode")
+	if keel_attachment:
+		var offset = keel_attachment.transform.origin  # Get its local position
+		current_parts["hull"].transform.origin -= offset  # Move hull in the opposite direction
+	
+# Align Keel - HullAttachmentNode to Vector3.ZERO
+	var hull_attachment = current_parts["keel"].get_node_or_null("HullAttachmentNode")
+	if hull_attachment:
+		var offset = hull_attachment.transform.origin  # Get its local position
+		current_parts["keel"].transform.origin -= offset  # Move keel in the opposite direction
+		
+# Align Nacelles
+	var keel_nacelle_attachment = current_parts["keel"].get_node_or_null("NacelleAttachmentNode")
+
+	if keel_nacelle_attachment and current_parts["nacelles"].size() == 2:
+		var nacelle_primary = current_parts["nacelles"][0]
+		var nacelle_mirrored = current_parts["nacelles"][1]
+		
+		var nacelle_keel_attachment = nacelle_primary.get_node_or_null("KeelAttachmentNode")
+		
+		if nacelle_keel_attachment:
+			var keel_target_pos = keel_nacelle_attachment.global_transform.origin
+			var nacelle_attach_pos = nacelle_keel_attachment.global_transform.origin
+			var offset = keel_target_pos - nacelle_attach_pos  # Calculate needed movement
+			
+			# Move primary nacelle
+			nacelle_primary.global_transform.origin += offset
+			
+			 # Set mirrored nacelle's position and flip X
+			nacelle_mirrored.global_transform.origin = nacelle_primary.global_transform.origin
+			nacelle_mirrored.global_transform.origin.x *= -1  # Flip on X-axis
+			
+# Align wing's nacelle_attachment to nacelle's wing_attachment
+	var wing_primary = current_parts["wings"][0]
+	var wing_mirrored = current_parts["wings"][1]
+	
+	# Align wings
+	var nacelle_wing_attachment = current_parts["nacelles"][0].get_node_or_null("WingAttachmentNode")
+	var wing_nacelle_attachment = wing_primary.get_node_or_null("NacelleAttachmentNode")
+	
+	if nacelle_wing_attachment and wing_nacelle_attachment:
+		var nacelle_target_pos = nacelle_wing_attachment.global_transform.origin
+		var wing_attach_pos = wing_nacelle_attachment.global_transform.origin
+		var offset = nacelle_target_pos - wing_attach_pos
+		
+		# Move primary wing
+		wing_primary.global_transform.origin += offset
+		
+		# Position and mirror the second wing
+		wing_mirrored.global_transform.origin = wing_primary.global_transform.origin
+		wing_mirrored.global_transform.origin.x *= -1  # Flip the position across X-axis
+		
+	else:
+		printerr("ERROR: Missing attachment nodes on nacelle or wing!")
+
 func calculate_ship_stats():
-	#print("Calculate Ship Stats")
-	pass
+	# Reset stats before recalculating
+	ship_stats.reset()
+
+	# Hull
+	if is_instance_valid(current_parts["hull"]):
+		ship_stats.add_part(current_parts["hull"])
+	
+	# Keel
+	if is_instance_valid(current_parts["keel"]):
+		ship_stats.add_part(current_parts["keel"])
+	
+	# Nacelles
+	if "nacelles" in current_parts and current_parts["nacelles"].size() > 0:
+		for nacelle in current_parts["nacelles"]:
+			if is_instance_valid(nacelle):
+				ship_stats.add_part(nacelle)
+	
+	# Wings
+	if "wings" in current_parts and current_parts["wings"].size() > 0:
+		for wing in current_parts["wings"]:
+			if is_instance_valid(wing):
+				ship_stats.add_part(wing)
+	
+	ship_stats.print_stats()
 
 func get_part_name(part_name: String) -> String:
 	if !current_parts.has(part_name) or current_parts[part_name] == null:
 		printerr("ERROR: Part ", part_name, " does not exist in current_parts!")
 		return "unknown_part"  # Return a placeholder instead of an empty string
-	
-	print("DEBUG: get_part_name for", part_name, "=", current_parts[part_name].name)
+		
+	# Check if it's an array (for nacelles and wings)
+	if current_parts[part_name] is Array and current_parts[part_name].size() > 0:
+		return current_parts[part_name][0].name  # ✅ Only return the first item's name
+		
+	# Return name normally for single parts (hull, keel)
 	return current_parts[part_name].name
