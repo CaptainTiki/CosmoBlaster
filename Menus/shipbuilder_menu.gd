@@ -48,9 +48,8 @@ func _on_hull_prev_bn_pressed() -> void:
 func _on_keel_next_bn_pressed() -> void:
 	await get_tree().process_frame
 	var part_name: String = player_ship.get_part_name("keel")
-	
 	if part_name == "unknown_part":
-		printerr("ERROR: Cannot switch keels because current hull is invalid.")
+		printerr("ERROR: Cannot switch keels because current keel is invalid.")
 		return
 	
 	var index: int = AssetManager.get_part_index(part_name, AssetManager.keels_list)

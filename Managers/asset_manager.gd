@@ -26,8 +26,6 @@ func scan_parts(part_folder: String, parts_list: Array[String]):
 	dir.list_dir_end()
 	
 func get_part_index(part_name : String, part_list : Array[String]) -> int:
-	print("Looking for:", part_name)
-	print("Available parts:", part_list)
 	for i in part_list.size():
 		if part_list[i].to_lower() == part_name.to_lower():
 			return i  # Return the index when a match is found
