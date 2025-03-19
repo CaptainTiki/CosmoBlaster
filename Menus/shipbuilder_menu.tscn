@@ -107,22 +107,27 @@ theme_override_constants/margin_bottom = 8
 layout_mode = 2
 
 [node name="Mass_Label" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer/StatsReadout/TextureRect/MarginContainer/StatsContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 text = "Mass : 0"
 
 [node name="Thrust_Label" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer/StatsReadout/TextureRect/MarginContainer/StatsContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 text = "Thrust : 0"
 
 [node name="EnergyCapacity_Label" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer/StatsReadout/TextureRect/MarginContainer/StatsContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 text = "Energy : 0"
 
 [node name="Armor_Label" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer/StatsReadout/TextureRect/MarginContainer/StatsContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 text = "Armor : 0"
 
 [node name="Integrity_Label" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer/StatsReadout/TextureRect/MarginContainer/StatsContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 text = "Integrity : 0"
 
@@ -332,6 +337,7 @@ text = "Exit"
 horizontal_alignment = 1
 vertical_alignment = 2
 
+[connection signal="ship_part_updated" from="MarginContainer/HBoxContainer/MarginContainer/SubViewportContainer/SubViewport/PlayerShip" to="." method="_on_player_ship_ship_part_updated"]
 [connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/SwapPartButtons/PartSelectionContainer/HullButtonsContainer/Hull_Next_Bn" to="." method="_on_hull_next_bn_pressed"]
 [connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/SwapPartButtons/PartSelectionContainer/HullButtonsContainer/Hull_Prev_Bn" to="." method="_on_hull_prev_bn_pressed"]
 [connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/SwapPartButtons/PartSelectionContainer/KeelButtonsContainer2/Keel_Next_Bn" to="." method="_on_keel_next_bn_pressed"]
@@ -340,3 +346,5 @@ vertical_alignment = 2
 [connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/SwapPartButtons/PartSelectionContainer/NacelleButtonsContainer3/Nacelle_Prev_Bn" to="." method="_on_nacelle_prev_bn_pressed"]
 [connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/SwapPartButtons/PartSelectionContainer/WingButtonsContainer4/Wing_Next_Bn" to="." method="_on_wing_next_bn_pressed"]
 [connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/SwapPartButtons/PartSelectionContainer/WingButtonsContainer4/Wing_Prev_Bn" to="." method="_on_wing_prev_bn_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/MarginContainer3/TextureRect/MarginContainer/HBoxContainer/MarginContainer/Deploy_Bn" to="." method="_on_deploy_bn_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/MarginContainer3/TextureRect/MarginContainer/HBoxContainer/MarginContainer2/Exit_Bn" to="." method="_on_exit_bn_pressed"]

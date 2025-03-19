@@ -1,5 +1,13 @@
 extends Control
 
+@onready var mass_label: Label = %Mass_Label
+@onready var thrust_label: Label = %Thrust_Label
+@onready var energy_capacity_label: Label = %EnergyCapacity_Label
+@onready var armor_label: Label = %Armor_Label
+@onready var integrity_label: Label = %Integrity_Label
+
+
+
 @onready var player_ship: PlayerShip = %PlayerShip
 @onready var hull_select_label: Label = %Hull_Select_Label
 @onready var keel_select_label: Label = %Keel_Select_Label
@@ -11,6 +19,26 @@ func _ready() -> void:
 	keel_select_label.text = AssetManager.keels_list[0]
 	nacelle_select_label.text = AssetManager.nacelles_list[0]
 	wing_select_label.text = AssetManager.wings_list[0]
+	update_ship_stats()
+
+func update_ship_stats():
+	if not player_ship:
+		return #dont want to update if we don't have a ship yet
+
+	var stats = player_ship.ship_stats.get_stats()
+	
+	mass_label.text = "Mass: " + str(stats.mass)
+	energy_capacity_label.text = "Energy Capacity: " + str(stats.energy)
+	thrust_label.text = "Thrust: " + str(stats.thrust)
+	integrity_label.text = "Integrity: " + str(stats.integrity)
+	armor_label.text = "Armor: " + str(stats.armor)
+
+func _unhandled_input(event: InputEvent) -> void:
+	if event.is_action_pressed("Escape"):  # ESC key
+		get_tree().quit()
+
+func _on_player_ship_ship_part_updated() -> void:
+	update_ship_stats()
 
 func _on_hull_next_bn_pressed() -> void:
 	await get_tree().process_frame
@@ -143,3 +171,16 @@ func _on_wing_prev_bn_pressed() -> void:
 
 	index = (index - 1 + AssetManager.wings_list.size()) % AssetManager.wings_list.size()  # Loop backwards safely
 	player_ship.set_wing(index)
+
+
+func _on_deploy_bn_pressed() -> void:
+	var player = get_tree().get_first_node_in_group("Player")  # Find Player in the scene
+	if player:
+		GameManager.set_player(player)  # Store Player in GameManager
+		player.reparent(get_tree().root)  # Move Player to the root so it isn't deleted
+		print("DEBUG: Player reparented to root and stored in GameManager:", GameManager.get_player())
+		
+	get_tree().change_scene_to_file("res://Levels/debug_level.tscn")
+
+func _on_exit_bn_pressed() -> void:
+	get_tree().quit()

@@ -12,6 +12,8 @@ class_name PlayerShip
 
 var ship_stats: ShipStats = ShipStats.new()
 
+signal ship_part_updated
+
 # Store references to current parts for easy access
 var current_parts = {
 	"hull": null,
@@ -25,7 +27,6 @@ func _ready() -> void:
 	set_keel(0)
 	set_nacelle(0)
 	set_wing(0)
-	pass
 
 func set_hull(index: int):
 	# Safety check: Ensure index is valid
@@ -250,7 +251,7 @@ func calculate_ship_stats():
 			if is_instance_valid(wing):
 				ship_stats.add_part(wing)
 	
-	ship_stats.print_stats()
+	ship_part_updated.emit()
 
 func get_part_name(part_name: String) -> String:
 	if !current_parts.has(part_name) or current_parts[part_name] == null:

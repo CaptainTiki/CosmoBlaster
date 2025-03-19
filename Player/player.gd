@@ -1,6 +1,8 @@
 extends CharacterBody3D
+class_name Player
 
-var speed = 400 #pixels per second
+@onready var player_ship: PlayerShip = $PlayerShip
+
 var bullet : PackedScene = preload("uid://bpqfqkdfgxyli")
 
 func _process(delta: float) -> void:
@@ -9,24 +11,7 @@ func _process(delta: float) -> void:
 	
 
 func _physics_process(delta: float) -> void:
-	var direction = Vector3.ZERO
-	
-	#Get input
-	if Input.is_action_pressed("Right"):
-		direction.x += 1
-	if Input.is_action_pressed("Left"):
-		direction.x -= 1
-	if Input.is_action_pressed("Up"):
-		direction.z -= 1
-	if Input.is_action_pressed("Down"):
-		direction.z += 1
-	
-	if direction != Vector3.ZERO:
-		direction = direction.normalized()
-	
-	velocity = direction * speed * delta
-	
-	move_and_slide()
+	pass
 
 func fire_primary_weapon() -> void:
 	var b : Bullet = bullet.instantiate()

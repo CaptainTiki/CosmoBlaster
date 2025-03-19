@@ -1,17 +1,18 @@
 [gd_scene load_steps=3 format=3 uid="uid://b08gmcip1yfos"]
 
-[ext_resource type="PackedScene" uid="uid://2qys6nnqvu7" path="res://Player/player.tscn" id="1_2iusd"]
 [ext_resource type="PackedScene" uid="uid://icqqtg7soxwm" path="res://world_environment.tscn" id="1_4h5u6"]
+[ext_resource type="Script" uid="uid://hhc2t5a0foda" path="res://Levels/level.gd" id="1_ww6fq"]
 
 [node name="Level" type="Node3D"]
+script = ExtResource("1_ww6fq")
+
+[node name="PlayerSpawn" type="Node3D" parent="."]
 
 [node name="WorldEnvironment" parent="." instance=ExtResource("1_4h5u6")]
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
 shadow_enabled = true
-
-[node name="Player" parent="." instance=ExtResource("1_2iusd")]
 
 [node name="CSGBox3D" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.06096, -0.965798, 0)
