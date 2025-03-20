@@ -1,34 +1,14 @@
-[gd_scene load_steps=6 format=3 uid="uid://dpvw876fxlveo"]
+[gd_scene load_steps=2 format=3 uid="uid://dpvw876fxlveo"]
 
-[ext_resource type="Script" uid="uid://n6v7tj3680j0" path="res://Player/PlayerShip/player_ship.gd" id="1_reowd"]
-[ext_resource type="PackedScene" uid="uid://dwrdka6tvd8i1" path="res://Player/PlayerShip/ShipParts/Hulls/ship_hull_standard.tscn" id="2_hxyn7"]
-[ext_resource type="PackedScene" uid="uid://clvtr2v2fg0o3" path="res://Player/PlayerShip/ShipParts/Keels/ship_keel_standard.tscn" id="3_5ogen"]
-[ext_resource type="PackedScene" uid="uid://ccbxcmy6gcoe3" path="res://Player/PlayerShip/ShipParts/Nacelles/ship_nacelle_standard.tscn" id="4_5ylc1"]
-[ext_resource type="PackedScene" uid="uid://bm3odmjixc8fr" path="res://Player/PlayerShip/ShipParts/Wings/ship_wing_standard.tscn" id="5_u2har"]
+[ext_resource type="Script" uid="uid://n6v7tj3680j0" path="res://Player/PlayerShip/player_ship.gd" id="1_my7ly"]
 
 [node name="PlayerShip" type="Node3D"]
-script = ExtResource("1_reowd")
+script = ExtResource("1_my7ly")
 
 [node name="Hull_Node" type="Node3D" parent="."]
 
-[node name="Ship_Hull_Standard" parent="Hull_Node" instance=ExtResource("2_hxyn7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.890722)
-
 [node name="Keel_Node" type="Node3D" parent="."]
-
-[node name="Ship_Keel_Standard" parent="Keel_Node" instance=ExtResource("3_5ogen")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.89776)
 
 [node name="Nacelle_Node" type="Node3D" parent="."]
 
-[node name="Ship_Nacelle_Standard" parent="Nacelle_Node" instance=ExtResource("4_5ylc1")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.430762, 0, 0.644132)
-
-[node name="Ship_Nacelle_Standard2" parent="Nacelle_Node" instance=ExtResource("4_5ylc1")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.430413, 0, 0.644132)
-
 [node name="Wing_Node" type="Node3D" parent="."]
-
-[node name="Ship_Wing_Standard" parent="Wing_Node" instance=ExtResource("5_u2har")]
-
-[node name="Ship_Wing_Standard2" parent="Wing_Node" instance=ExtResource("5_u2har")]

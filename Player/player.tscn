@@ -6,7 +6,7 @@
 [sub_resource type="BoxShape3D" id="BoxShape3D_5m5lb"]
 size = Vector3(1.0686, 0.149048, 1.99713)
 
-[node name="Player" type="CharacterBody3D"]
+[node name="Player" type="CharacterBody3D" groups=["Player"]]
 motion_mode = 1
 script = ExtResource("1_164x6")
 

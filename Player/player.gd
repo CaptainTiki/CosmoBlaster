@@ -8,7 +8,11 @@ var bullet : PackedScene = preload("uid://bpqfqkdfgxyli")
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("Fire_Primary_Weapon"):
 		fire_primary_weapon()
-	
+
+
+func _notification(what):
+	if what == NOTIFICATION_PREDELETE:
+		print("WARNING: Player is being queue_free()! This may cause loss of data.")
 
 func _physics_process(delta: float) -> void:
 	pass

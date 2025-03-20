@@ -1,11 +1,10 @@
-[gd_scene load_steps=12 format=3 uid="uid://bo7tgd5babt85"]
+[gd_scene load_steps=11 format=3 uid="uid://bo7tgd5babt85"]
 
 [ext_resource type="Script" uid="uid://borhfrht04j8y" path="res://Menus/shipbuilder_menu.gd" id="1_cm360"]
 [ext_resource type="Texture2D" uid="uid://bfy40bidmko0o" path="res://Menus/MenuAssets/Background_blue.png" id="2_cm360"]
 [ext_resource type="World3D" uid="uid://cekadwieeq8jb" path="res://Hanger_World_3d.tres" id="2_lb6vt"]
 [ext_resource type="Texture2D" uid="uid://di7f0bn4u42u2" path="res://Menus/MenuAssets/Button_normal.png" id="2_mu7a4"]
 [ext_resource type="Texture2D" uid="uid://ben6oms4slmt5" path="res://Menus/MenuAssets/Button_pressed.png" id="3_cm360"]
-[ext_resource type="PackedScene" uid="uid://dpvw876fxlveo" path="res://Player/PlayerShip/player_ship.tscn" id="3_gjj1i"]
 [ext_resource type="Texture2D" uid="uid://dcqhynmoxqvcg" path="res://Menus/MenuAssets/Button_hover.png" id="4_lb6vt"]
 
 [sub_resource type="Gradient" id="Gradient_dqnje"]
@@ -60,22 +59,18 @@ custom_minimum_size = Vector2(512, 0)
 layout_mode = 2
 stretch = true
 
-[node name="SubViewport" type="SubViewport" parent="MarginContainer/HBoxContainer/MarginContainer/SubViewportContainer"]
+[node name="ShipViewport" type="SubViewport" parent="MarginContainer/HBoxContainer/MarginContainer/SubViewportContainer"]
+unique_name_in_owner = true
 world_3d = ExtResource("2_lb6vt")
 transparent_bg = true
 handle_input_locally = false
 size = Vector2i(512, 632)
 render_target_update_mode = 4
 
-[node name="Camera3D" type="Camera3D" parent="MarginContainer/HBoxContainer/MarginContainer/SubViewportContainer/SubViewport"]
-transform = Transform3D(0.87971, -0.195266, 0.433568, -0.0384059, 0.879639, 0.474088, -0.473956, -0.433712, 0.766328, 5.716, 7.745, 9.869)
-fov = 45.0
-
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="MarginContainer/HBoxContainer/MarginContainer/SubViewportContainer/SubViewport"]
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="MarginContainer/HBoxContainer/MarginContainer/SubViewportContainer/ShipViewport"]
 transform = Transform3D(1, 0, 0, 0, 0.267238, 0.96363, 0, -0.96363, 0.267238, 0, 0, 0)
-
-[node name="PlayerShip" parent="MarginContainer/HBoxContainer/MarginContainer/SubViewportContainer/SubViewport" instance=ExtResource("3_gjj1i")]
-unique_name_in_owner = true
+light_energy = 0.85
+light_indirect_energy = 0.5
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
 layout_mode = 2
@@ -337,7 +332,6 @@ text = "Exit"
 horizontal_alignment = 1
 vertical_alignment = 2
 
-[connection signal="ship_part_updated" from="MarginContainer/HBoxContainer/MarginContainer/SubViewportContainer/SubViewport/PlayerShip" to="." method="_on_player_ship_ship_part_updated"]
 [connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/SwapPartButtons/PartSelectionContainer/HullButtonsContainer/Hull_Next_Bn" to="." method="_on_hull_next_bn_pressed"]
 [connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/SwapPartButtons/PartSelectionContainer/HullButtonsContainer/Hull_Prev_Bn" to="." method="_on_hull_prev_bn_pressed"]
 [connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/SwapPartButtons/PartSelectionContainer/KeelButtonsContainer2/Keel_Next_Bn" to="." method="_on_keel_next_bn_pressed"]

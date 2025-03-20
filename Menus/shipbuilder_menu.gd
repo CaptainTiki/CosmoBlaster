@@ -7,14 +7,22 @@ extends Control
 @onready var integrity_label: Label = %Integrity_Label
 
 
+@onready var ship_viewport: SubViewport = %ShipViewport
+@onready var player : Player = null
+@onready var player_ship: PlayerShip = null
 
-@onready var player_ship: PlayerShip = %PlayerShip
 @onready var hull_select_label: Label = %Hull_Select_Label
 @onready var keel_select_label: Label = %Keel_Select_Label
 @onready var nacelle_select_label: Label = %Nacelle_Select_Label
 @onready var wing_select_label: Label = %Wing_Select_Label
 
 func _ready() -> void:
+	#get ship from gamemanager - on first load
+	player = GameManager.get_player_from_GameManager()
+	player_ship = player.player_ship
+	
+	ship_viewport.add_child(player)
+	
 	hull_select_label.text = AssetManager.hulls_list[0]
 	keel_select_label.text = AssetManager.keels_list[0]
 	nacelle_select_label.text = AssetManager.nacelles_list[0]
@@ -22,6 +30,9 @@ func _ready() -> void:
 	update_ship_stats()
 
 func update_ship_stats():
+	#check for player for debug:
+	if not player:
+		print("player is missing")
 	if not player_ship:
 		return #dont want to update if we don't have a ship yet
 
@@ -172,15 +183,11 @@ func _on_wing_prev_bn_pressed() -> void:
 	index = (index - 1 + AssetManager.wings_list.size()) % AssetManager.wings_list.size()  # Loop backwards safely
 	player_ship.set_wing(index)
 
-
-func _on_deploy_bn_pressed() -> void:
-	var player = get_tree().get_first_node_in_group("Player")  # Find Player in the scene
-	if player:
-		GameManager.set_player(player)  # Store Player in GameManager
-		player.reparent(get_tree().root)  # Move Player to the root so it isn't deleted
-		print("DEBUG: Player reparented to root and stored in GameManager:", GameManager.get_player())
-		
-	get_tree().change_scene_to_file("res://Levels/debug_level.tscn")
+func _on_deploy_bn_pressed():
+	if player and player_ship:
+		ship_viewport.remove_child(player) #unparent from this scene
+		GameManager.store_player_in_GameManager(player) #store ref and parent to gamemanager
+		get_tree().change_scene_to_file("res://Levels/debug_level.tscn")
 
 func _on_exit_bn_pressed() -> void:
 	get_tree().quit()
