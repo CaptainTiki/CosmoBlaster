@@ -7,11 +7,12 @@
 [node name="Ship_Wing_Standard" type="Node3D"]
 script = ExtResource("1_x0sxe")
 part_name = "Standard Wing"
-mass = 5.0
-energy_capacity = 3.0
-thrust = 4.0
-integrity = 10.0
-armor = 1.0
+mass = 10.0
+energy_capacity = 25.0
+thrust = 150.0
+integrity = 15.0
+armor = 2.0
+torque = 125.0
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(1.17789, 0, 0, 0, 0.110039, 0, 0, 0, 1.18102, -0.15, 0, 0)

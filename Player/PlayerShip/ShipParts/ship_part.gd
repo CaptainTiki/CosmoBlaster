@@ -8,3 +8,4 @@ class_name ShipPart
 @export var thrust : float
 @export var integrity : float
 @export var armor : float
+@export var torque : float

@@ -7,11 +7,10 @@
 [node name="ShipKeel_Standard" type="Node3D"]
 script = ExtResource("1_2vawy")
 part_name = "Standard Keel"
-mass = 15.0
-energy_capacity = 25.0
-thrust = 20.0
-integrity = 15.0
-armor = 2.0
+mass = 25.0
+energy_capacity = 100.0
+integrity = 50.0
+armor = 5.0
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.359225, 0, 0, 0, 0.514761, 0, 0, 0, 1.78943, 0, 0, 0)

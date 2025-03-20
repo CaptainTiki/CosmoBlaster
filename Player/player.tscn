@@ -25,4 +25,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 10)
 [node name="BulletSpawn" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.12761)
 
-[node name="PlayerShip" parent="." instance=ExtResource("2_4ntmi")]
+[node name="RotationPivot" type="Node3D" parent="."]
+
+[node name="PlayerShip" parent="RotationPivot" instance=ExtResource("2_4ntmi")]
+unique_name_in_owner = true

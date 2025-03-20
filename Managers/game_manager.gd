@@ -11,8 +11,8 @@ func store_player_in_GameManager(new_player: Player):
 		return
 	
 	player = new_player
+	player.is_movement_active = false #anytime we're storing it - the ship needs to be deactivated
 	add_child(player)  # Reparent player to GameManager
-	print("DEBUG: Gamemanager: Player stored in GameManager:", player)
 
 func get_player_from_GameManager() -> Player:
 	if player == null:

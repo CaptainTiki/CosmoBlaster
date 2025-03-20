@@ -6,6 +6,7 @@ var total_energy_capacity : float = 0.0
 var total_thrust : float = 0.0
 var total_integrity : float = 0.0
 var total_armor : float = 0.0
+var total_torque : float = 0.0
 
 ##Reset stats to ZERO - so they can be re-calculated
 func reset():
@@ -14,6 +15,7 @@ func reset():
 	total_thrust = 0.0
 	total_integrity = 0.0
 	total_armor = 0.0
+	total_torque = 0.0
 
 ##Add new part to total stats
 func add_part(ship_part: ShipPart) -> void:
@@ -22,6 +24,7 @@ func add_part(ship_part: ShipPart) -> void:
 	total_thrust += ship_part.thrust
 	total_integrity += ship_part.integrity
 	total_armor += ship_part.armor
+	total_torque += ship_part.torque
 
 ## Remove a ship part's stats from the total ship stats
 func remove_part(ship_part: ShipPart) -> void:
@@ -30,6 +33,7 @@ func remove_part(ship_part: ShipPart) -> void:
 	total_thrust = max(0.0, total_thrust - ship_part.thrust)
 	total_integrity = max(0.0, total_integrity - ship_part.integrity)
 	total_armor = max(0.0, total_armor - ship_part.armor)
+	total_torque = max(0.0, total_torque - ship_part.torque)
 
 func get_stats() -> Dictionary:
 	return {
@@ -37,7 +41,8 @@ func get_stats() -> Dictionary:
 		"energy": total_energy_capacity,
 		"thrust": total_thrust,
 		"integrity": total_integrity,
-		"armor": total_armor
+		"armor": total_armor,
+		"torque": total_torque
 		}
 
 func print_stats() -> void:
@@ -47,3 +52,4 @@ func print_stats() -> void:
 	print("Thrust: ", total_thrust)
 	print("Integrity: ", total_integrity)
 	print("Armor: ", total_armor)
+	print("Torque: ", total_torque)

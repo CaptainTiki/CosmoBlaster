@@ -6,11 +6,10 @@
 
 [node name="ShipKeel_Reinforced" type="Node3D"]
 script = ExtResource("1_1kpa1")
-mass = 20.0
-energy_capacity = 45.0
-thrust = 30.0
-integrity = 45.0
-armor = 4.0
+mass = 40.0
+energy_capacity = 100.0
+integrity = 75.0
+armor = 15.0
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.766857, 0, 0, 0, 0.81874, 0, 0, 0, 1.78943, 0, 0, 0)

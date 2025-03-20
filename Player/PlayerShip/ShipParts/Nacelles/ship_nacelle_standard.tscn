@@ -7,10 +7,10 @@
 [node name="ShipNacelle_Standard" type="Node3D"]
 script = ExtResource("1_vvtj7")
 part_name = "Standard Nacelle"
-mass = 4.0
-energy_capacity = 2.0
-thrust = 20.0
-integrity = 15.0
+mass = 20.0
+energy_capacity = 50.0
+thrust = 300.0
+integrity = 25.0
 armor = 2.0
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]

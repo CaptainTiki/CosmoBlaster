@@ -7,11 +7,12 @@
 [node name="Ship_Wing_Reinforced" type="Node3D"]
 script = ExtResource("1_ibiab")
 part_name = "Reinforced Wing"
-mass = 9.0
-energy_capacity = 5.0
-thrust = 7.0
-integrity = 15.0
-armor = 2.0
+mass = 15.0
+energy_capacity = 25.0
+thrust = 150.0
+integrity = 25.0
+armor = 5.0
+torque = 100.0
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(1.84046, 0, 0, 0, 0.183398, 0, 0, 0, 1.96837, -0.09, 0, 0)

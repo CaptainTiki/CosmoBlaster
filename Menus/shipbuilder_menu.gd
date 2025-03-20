@@ -20,7 +20,9 @@ func _ready() -> void:
 	#get ship from gamemanager - on first load
 	player = GameManager.get_player_from_GameManager()
 	player_ship = player.player_ship
-	
+	player.rotation_pivot.rotation = Vector3.ZERO
+	player.global_transform.origin = Vector3.ZERO
+	player.velocity = Vector3.ZERO
 	ship_viewport.add_child(player)
 	
 	hull_select_label.text = AssetManager.hulls_list[0]
@@ -30,9 +32,6 @@ func _ready() -> void:
 	update_ship_stats()
 
 func update_ship_stats():
-	#check for player for debug:
-	if not player:
-		print("player is missing")
 	if not player_ship:
 		return #dont want to update if we don't have a ship yet
 

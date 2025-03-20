@@ -7,10 +7,10 @@
 [node name="Ship_Hull_Reinforced" type="Node3D"]
 script = ExtResource("1_0ubgt")
 part_name = "Reinforced Hull"
-mass = 15.0
-thrust = 5.0
-integrity = 25.0
-armor = 3.0
+mass = 75.0
+energy_capacity = 200.0
+integrity = 150.0
+armor = 25.0
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.766857, 0, 0, 0, 0.81874, 0, 0, 0, 1.78943, 0, 0, 0)
