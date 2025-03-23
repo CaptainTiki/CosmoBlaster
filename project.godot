@@ -67,6 +67,13 @@ Escape={
 ]
 }
 
+[layer_names]
+
+3d_physics/layer_1="Player"
+3d_physics/layer_5="Enemy"
+3d_physics/layer_7="Projectiles"
+3d_physics/layer_8="WorldEnvironment"
+
 [rendering]
 
 anti_aliasing/quality/msaa_3d=1

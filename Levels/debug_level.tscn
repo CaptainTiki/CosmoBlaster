@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://b08gmcip1yfos"]
+[gd_scene load_steps=5 format=3 uid="uid://b08gmcip1yfos"]
 
 [ext_resource type="PackedScene" uid="uid://icqqtg7soxwm" path="res://world_environment.tscn" id="1_4h5u6"]
 [ext_resource type="Script" uid="uid://hhc2t5a0foda" path="res://Levels/level.gd" id="1_ww6fq"]
 [ext_resource type="PackedScene" uid="uid://b6nym8d3q01tu" path="res://Astroid1.fbx" id="3_ww6fq"]
+[ext_resource type="PackedScene" uid="uid://bgad5k7en8gys" path="res://Enemies/Enemy.tscn" id="4_65113"]
 
 [node name="Level" type="Node3D"]
 script = ExtResource("1_ww6fq")
@@ -35,3 +36,12 @@ transform = Transform3D(2.94783, -1.87577, -1.51154, 2.76188, 2.18203, 0.768525,
 
 [node name="Astroid7" parent="." instance=ExtResource("3_ww6fq")]
 transform = Transform3D(2.21388, -0.00583931, -1.57753, -0.782254, -1.45473, -2.88129, -0.575947, 1.95337, -2.15049, -22.9242, -19.0941, 5.53266)
+
+[node name="Target Drone" parent="." instance=ExtResource("4_65113")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -11.76)
+
+[node name="Target Drone2" parent="." instance=ExtResource("4_65113")]
+transform = Transform3D(0.743868, 0, 0.668326, 0, 1, 0, -0.668326, 0, 0.743868, -11.392, 0, -3.85991)
+
+[node name="Target Drone3" parent="." instance=ExtResource("4_65113")]
+transform = Transform3D(0.743868, 0, 0.668326, 0, 1, 0, -0.668326, 0, 0.743868, 8.33715, 0, 5.89288)

@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://bgad5k7en8gys"]
+
+[ext_resource type="Script" uid="uid://2clele41cpf4" path="res://Enemies/enemy.gd" id="1_bkvnc"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_0gilx"]
+height = 0.25
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_bkvnc"]
+height = 0.25
+
+[node name="Enemy" type="CharacterBody3D"]
+collision_layer = 145
+collision_mask = 145
+script = ExtResource("1_bkvnc")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
+shape = SubResource("CylinderShape3D_0gilx")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
+mesh = SubResource("CylinderMesh_bkvnc")
