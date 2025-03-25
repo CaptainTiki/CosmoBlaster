@@ -1,6 +1,10 @@
 extends CharacterBody3D
 class_name Player
 
+@onready var label_1: Label = $Label1
+@onready var label_2: Label = $Label2
+
+
 @export var base_rotation_speed: float = 5.0  # Base rotation speed
 @export var damping: float = .95  # Friction to prevent infinite drift
 
@@ -39,9 +43,15 @@ func handle_movement(delta: float) -> void:
 
 	if input_dir.length() > 0:
 		input_dir = input_dir.normalized()
-		var acceleration = (ship_stats.total_thrust / max(ship_stats.total_mass, 1)) * input_dir
-		velocity += acceleration * delta * 3
-	velocity *= damping  # Apply friction
+		#var acceleration = (ship_stats.total_thrust / max(ship_stats.total_mass, 1)) * input_dir
+		var acceleration = input_dir * 15.0
+		label_1.text = "Acceleration: " + str(acceleration.length())
+		velocity += acceleration * delta
+		label_2.text = "Velocity: " + str(velocity.length())
+	else:
+		velocity *= damping  # Apply friction
+		label_1.text = "Acceleration: " + str(0)
+		label_2.text = "Velocity: " + str(velocity)
 	move_and_slide()
 
 func handle_rotation(delta: float) -> void:

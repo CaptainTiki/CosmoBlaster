@@ -64,7 +64,7 @@ unique_name_in_owner = true
 world_3d = ExtResource("2_lb6vt")
 transparent_bg = true
 handle_input_locally = false
-size = Vector2i(512, 632)
+size = Vector2i(512, 2)
 render_target_update_mode = 4
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="MarginContainer/HBoxContainer/MarginContainer/SubViewportContainer/ShipViewport"]

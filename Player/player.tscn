@@ -29,3 +29,13 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.12761)
 
 [node name="PlayerShip" parent="RotationPivot" instance=ExtResource("2_4ntmi")]
 unique_name_in_owner = true
+
+[node name="Label1" type="Label" parent="."]
+offset_top = 12.0
+offset_right = 40.0
+offset_bottom = 35.0
+
+[node name="Label2" type="Label" parent="."]
+offset_top = 51.0
+offset_right = 40.0
+offset_bottom = 74.0
